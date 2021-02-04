@@ -1,5 +1,6 @@
 <?php
     require_once('controller/Controller.php');
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,9 @@
     <link href="style/style.css" rel="stylesheet" type="text/css">
     <link href="style/login.css" rel="stylesheet" type="text/css">
     <link href="style/table.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>foo(d) Admin</title>
 </head>
 <body>
@@ -34,15 +37,23 @@
     </div>
     <div id="home1">
         <?php
-            $controller = new Controller();
-            if (isset($_POST['login'])) {
-                if ($controller->login($_POST)[0]['login']) {
-                    include('vue/home.php');
-                } else {
-                    include('vue/login-error.php');
+            if (isset($_SESSION['logged'])) {
+                switch ($_SESSION['page'])  {
+                    case 'recruitment'; include('view/recruitment.php'); break;
+                    default: include('view/home.php'); break;
                 }
             } else {
-                include('vue/login.php');
+                $controller = new Controller();
+                if (isset($_POST['login'])) {
+                    if ($controller->login($_POST)[0]['login']) {
+                        $_SESSION['logged'] = 1;
+                        include('view/home.php');
+                    } else {
+                        include('view/login-error.php');
+                    }
+                } else {
+                    include('view/login.php');
+                }
             }
         ?>
     </div>
