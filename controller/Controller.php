@@ -14,4 +14,19 @@ class Controller
     {
         return $this->model->login($tab);
     }
+
+    public function selectAllOffer()
+    {
+        return $this->model->selectAllOffer();
+    }
+
+    public function insertOffer($tab)
+    {
+        $this->model->insertOffer($tab);
+    }
+
+    public function closeOffer($id)
+    {
+        $this->model->closeOffer($id);
+    }
 }
