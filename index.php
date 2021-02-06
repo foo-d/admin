@@ -37,13 +37,14 @@
     </div>
     <div id="home1">
         <?php
+            $controller = new Controller();
+            if (isset($_POST['addOffer'])) { $controller->insertOffer($_POST); header('location: index.php'); }
             if (isset($_SESSION['logged'])) {
                 switch ($_SESSION['page'])  {
                     case 'recruitment'; include('view/recruitment.php'); break;
                     default: include('view/home.php'); break;
                 }
             } else {
-                $controller = new Controller();
                 if (isset($_POST['login'])) {
                     if ($controller->login($_POST)[0]['login']) {
                         $_SESSION['logged'] = 1;

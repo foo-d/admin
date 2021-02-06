@@ -57,13 +57,11 @@ class Model
     public function insertOffer($tab)
     {
         if ($this->pdo != NULL) {
-            $request = 'INSERT INTO offer VALUES (NULL, :name, :descrption, :availability, :contract, :hourly_wage, :start_date, NULL);';
+            $request = 'INSERT INTO offer VALUES (NULL, :name, :descrption, 1, :contract, :hourly_wage, CURDATE(), NULL);';
             $data = array(':name' => $tab['name'],
-                ':descrption' => $tab['descrption'],
-                ':availability' => $tab['availability'],
+                ':descrption' => $tab['description'],
                 ':contract' => $tab['contract'],
-                ':hourly_wage' => $tab['hourly_wage'],
-                ':start_date' => $tab['start_date']);
+                ':hourly_wage' => $tab['hourly_wage']);
             $select = $this->pdo->prepare($request);
             $select->execute($data);
         }

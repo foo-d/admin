@@ -37,9 +37,17 @@
                     '<td><a href="controller/postulation.php?id=' . $offer['id'] . '"><img src="img/iconfinder_icon-ios7-arrow-forward_211688.png" style="height: 16px"></a></td>' .
                     '<td>' . ($offer['end_date'] == '' ? '<a href="close.php?id=' . $offer['id'] . '"><img src="img/double-arrow.png" style="height: 16px"></a></td></tr>' : 'Offer closed');
                 }
-                echo "<tr><td colspan='9'><a href='index.jsp?action=" .
-                    "add'><img src='img/plus-124-459368.webp' style='heig" .
-                    "ht: 16px'></a></td></tr>";
+                if (isset($_GET['addOffer'])) {
+                    echo '<tr><form action="" method="post"><td><input name="name" placeholder="Name" type="text"></td>' .
+                        '<td><input name="description" placeholder="Description" type="text"></td>' .
+                        '<td></td><td><input name="contract" placeholder="Contract" type="text"></td>' .
+                        '<td><input min="0" name="hourly_wage" placeholder="Hourly wage" step="0.01" type="number"></td>' .
+                        '<td></td><td></td><td><a href="index.php"><img src="img/cancel-146131_1280.webp" style="height: 16px"></a></td>' .
+                        '<td><input name="addOffer" type="submit" value="" style="background-image: url(\'img/Tick_Mark-512.webp\'); border:none; background-repeat:no-repeat;background-size:100% 100%;"></td>' .
+                        '</form></tr>';
+                } else {
+                    echo "<tr><td colspan='9'><a href='index.php?addOffer'><img src='img/plus-124-459368.webp' style='height: 16px'></a></td></tr>";
+                }
             ?>
             </tbody>
         </table>
