@@ -66,4 +66,47 @@ class Model
             $select->execute($data);
         }
     }
+
+    public function selectWherePostulation($id)
+    {
+        if ($this->pdo != NULL) {
+            $request = 'SELECT * FROM postulation WHERE id_offer = :id';
+            $data = array(':id' => $id);
+            $select = $this->pdo->prepare($request);
+            $select->execute($data);
+            return $select->fetchAll();
+        } else {
+            return NULL;
+        }
+    }
+
+    public function addInterview($id, $date)
+    {
+        if ($this->pdo != NULL) {
+            $request = 'UPDATE postulation SET state = "Waiting for interview", date_of_job_interview = :date WHERE id = :id;';
+            $data = array(':id' => $id, ':date' => $date);
+            $select = $this->pdo->prepare($request);
+            $select->execute($data);
+        }
+    }
+
+    public function archivePostulation($id)
+    {
+        if ($this->pdo != NULL) {
+            $request = 'UPDATE postulation SET state = "Archived" WHERE id = :id;';
+            $data = array(':id' => $id,);
+            $select = $this->pdo->prepare($request);
+            $select->execute($data);
+        }
+    }
+
+    public function acceptPostulation($id)
+    {
+        if ($this->pdo != NULL) {
+            $request = 'UPDATE postulation SET state = "Accepted" WHERE id = :id;';
+            $data = array(':id' => $id);
+            $select = $this->pdo->prepare($request);
+            $select->execute($data);
+        }
+    }
 }

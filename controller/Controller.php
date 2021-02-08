@@ -29,4 +29,24 @@ class Controller
     {
         $this->model->closeOffer($id);
     }
+
+    public function selectWherePostulation($id)
+    {
+        return $this->model->selectWherePostulation($id);
+    }
+
+    public function addInterview($id, $date)
+    {
+        $this->model->addInterview($id, $date);
+    }
+
+    public function archivePostulation($id)
+    {
+        $this->model->archivePostulation($id);
+    }
+
+    public function acceptPostulation($id)
+    {
+        $this->model->acceptPostulation($id);
+    }
 }

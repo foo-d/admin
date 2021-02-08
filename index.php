@@ -39,9 +39,13 @@
         <?php
             $controller = new Controller();
             if (isset($_POST['addOffer'])) { $controller->insertOffer($_POST); header('location: index.php'); }
+            if (isset($_POST['addInterview'])) { $controller->addInterview($_POST['id'], $_POST['date']); header('location: index.php?id=' . $_POST['idr']); }
+            if (isset($_GET['no'])) { $controller->archivePostulation($_GET['id']); header('location: index.php?id=' . $_GET['id']); }
+            if (isset($_GET['yes'])) { $controller->acceptPostulation($_GET['id']); header('location: index.php?id=' . $_GET['id']); }
             if (isset($_SESSION['logged'])) {
                 switch ($_SESSION['page'])  {
                     case 'recruitment'; include('view/recruitment.php'); break;
+                    case 'postulation'; include('view/postulation.php'); break;
                     default: include('view/home.php'); break;
                 }
             } else {

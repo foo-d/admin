@@ -35,7 +35,7 @@
                     '<td>' . substr($offer['start_date'], 8, 2) . '/' . substr($offer['start_date'], 5, 2) . '/' . substr($offer['start_date'], 0, 4) . '</td>' .
                     '<td>' . ($offer['end_date'] == '' ? 'Ongoing' : substr($offer['end_date'], 8, 2) . '/' . substr($offer['end_date'], 5, 2) . '/' . substr($offer['end_date'], 0, 4)) . '</td>' .
                     '<td><a href="controller/postulation.php?id=' . $offer['id'] . '"><img src="img/iconfinder_icon-ios7-arrow-forward_211688.png" style="height: 16px"></a></td>' .
-                    '<td>' . ($offer['end_date'] == '' ? '<a href="close.php?id=' . $offer['id'] . '"><img src="img/double-arrow.png" style="height: 16px"></a></td></tr>' : 'Offer closed');
+                    '<td>' . ($offer['end_date'] == '' ? '<a href="close.php?id=' . $offer['id'] . '"><img src="img/double-arrow.png" style="height: 16px"></a></td></tr>' : 'Offer closed</td></tr>');
                 }
                 if (isset($_GET['addOffer'])) {
                     echo '<tr><form action="" method="post"><td><input name="name" placeholder="Name" type="text"></td>' .
